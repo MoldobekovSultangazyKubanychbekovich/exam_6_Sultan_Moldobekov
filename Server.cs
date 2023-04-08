@@ -117,7 +117,6 @@ namespace exam_6
         }
         private string BuildHtml(string filename, HttpListenerContext context)
         {
-            TextForUser text = null;
             string html = "";
             string layoutPath = _siteDirectory + "/layout.html";
             var query = context.Request.QueryString;
@@ -146,7 +145,6 @@ namespace exam_6
                 bytes = context.Request.InputStream.Read(buffer, 0, buffer.Length);
                 builder.Append(System.Text.Encoding.UTF8.GetString(buffer, 0, bytes));
                 string result = builder.ToString();
-                text = JsonSerializer.Deserialize<TextForUser>(result);
             }
             if (method == "POST" && filePath == "../../../site/index.html")
             {
@@ -160,7 +158,6 @@ namespace exam_6
             }
             html = razorService.Run(filename, null, new
             {
-                Text = text,
                 Employees = employees
             });
             return html;

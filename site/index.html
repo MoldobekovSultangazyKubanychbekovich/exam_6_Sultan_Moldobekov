@@ -1,13 +1,40 @@
 @{
     Layout = "layout";
 }
-
-<form action="http://localhost:8888/index.html" method="post">
-
-    <label for="cat">Дайте имя коту:</label>
- 
-    <input type="text" name="catName" id="cat">
- 
-    <button type="submit">Подтвердить</button>
- 
- </form>
+<div class="container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Age</th>
+                <th scope="col">Detailed info</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var emp in Model.Employees){
+            <tr>
+                <th scope="row">@emp.Id</th>
+                <td>@emp.Name</td>
+                <td>@emp.Age</td>
+                <td><a href="http://localhost:8888/employee.html?id=@emp.Id" class="btn btn-auto border-primary bg-primary text-white py-0 text-end me-2 mb-2">more</a></td>
+            </tr>
+            }
+        </tbody>
+    </table>
+    <div class="">
+        <d сlass="text-center fw-bold mb-3">
+            <h4 сlass="fw-bold">Please, fill in the employee details</h4>
+        </d>
+        <form сlass=" formCat text-center ms-3 me-3" method="post">
+            <div class="mb-3">
+                <input type="text" class="form-control text-center mb-3 mt-3" required name="id" id="emp" autofocus placeholder="Enter employee id">
+                <input type="text" class="form-control text-center mb-3" required name="name" id="emp" autofocus placeholder="Enter employee name">
+                <input type="text" class="form-control text-center mb-3" required name="surname" id="emp" autofocus placeholder="Enter employee surname">
+                <input type="text" class="form-control text-center mb-3" required name="about" id="emp" autofocus placeholder="Enter employee about">
+                <input type="text" class="form-control text-center mb-3" required name="age" id="emp" autofocus placeholder="Enter employee age">
+            </div>
+            <button type="submit" class=" sumbit-btn btn text-white btn-primary border-primary px-lg-5">Add</button>
+        </form>
+    </div>
+</div>
