@@ -129,12 +129,21 @@ namespace exam_6
                 razorService.AddTemplate(filename,File.ReadAllText(filePath));
                 razorService.Compile(filename);
             }
-            //if (query.HasKeys())
-            //{
-            //    int idFrom = Convert.ToInt32(query.Get("idFrom"));
-            //    int idTo = Convert.ToInt32(query.Get("idTo"));
-            //    employees.RemoveAll(e => e.Id < idFrom || e.Id > idTo);
-            //}
+            List<Task> task = Serializer.GetTasks();
+            if (query.HasKeys())
+            {
+                if(query.Get("delete") != null)
+                {
+                    int id = Convert.ToInt32(query.Get("delete"));
+                    DeleTeTask(id);
+                }
+                else
+                {
+                    int id = Convert.ToInt32(query.Get("done"));
+                    DoneStateTask(id);
+                }
+                
+            }
             var method = context.Request.HttpMethod;
             if (method == "POST" && filePath == "../../../site/showText.html")
             {
@@ -157,7 +166,6 @@ namespace exam_6
                 string[] res = result.Split("&");
                 AddTask(res);
             }
-            List<Task> task = Serializer.GetTasks();
             html = razorService.Run(filename, null, new
             {
                 Tasks = task
@@ -166,13 +174,46 @@ namespace exam_6
         }
         public void AddTask(string[] res)
         {
+            int id;
+            List<Task> tasks = Serializer.GetTasks();
+            if(tasks.Count == 0)
+            {
+                id = 1;
+            }
+            else
+            {
+                id = tasks[tasks.Count - 1].Id + 1;
+            }
             string name = res[0].Split("=")[1];
             string executor = res[1].Split("=")[1];
             string description = res[2].Split("=")[1];
-            Task task = new Task(name, executor, description);
-            List<Task> tasks = Serializer.GetTasks();
+            Task task = new Task(id, name, executor, description);
             tasks.Add(task);
             Serializer.OverrideFile(tasks);
+        }
+        public void DeleTeTask(int id)
+        {
+            List<Task> tasks = Serializer.GetTasks();
+            for(int i = 0; i < tasks.Count; i++) 
+            {
+                if(id == tasks[i].Id)
+                {
+                    tasks.Remove(tasks[i]);
+                    Serializer.OverrideFile(tasks);
+                }
+            }
+        }
+        public void DoneStateTask(int id)
+        {
+            List<Task> tasks = Serializer.GetTasks();
+            for (int i = 0; i < tasks.Count; i++)
+            {
+                if (id == tasks[i].Id)
+                {
+                    tasks[i].State = "done";
+                    Serializer.OverrideFile(tasks);
+                }
+            }
         }
     }
 }

@@ -1,6 +1,10 @@
 ﻿.addTask{
-    max-width: 300px;
+    width: 20%;
 }
 .showTask {
-    max-width: 600px;
+    width: 80%;
+    float: left;
+}
+.sumbitBtn {
+    width: 40%;
 }

@@ -1,13 +1,14 @@
 @{
     Layout = "layout";
 }
-<div class="container">
+<div class="container mt-5">
     <div class="row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-2">
         <div class = "col showTask">
+            <div><h3 class="text-center fw-bold">Tasks List</h3></div>
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">Id</th>
+                        <th scope="col">ID</th>
                         <th scope="col">Name</th>
                         <th scope="col">Executer</th>
                         <th scope="col">Date creation</th>
@@ -19,17 +20,22 @@
                     @foreach(var emp in Model.Tasks){
                     <tr>
                         <th scope="row">@emp.Id</th>
-                        <td>@emp.Name</td>
+                        <td><a href="http://localhost:8888/task.html?id=@emp.Id">@emp.Name</a></td>
                         <td>@emp.Executor</td>
                         <td>@emp.DateCreation</td>
                         <td>@emp.State</td>
-                        <td><a href="http://localhost:8888/employee.html?id=@emp.Id" class="btn btn-auto border-primary bg-primary text-white py-0 text-end me-2 mb-2">more</a></td>
+                        <td>
+                            <form method="get">
+                                <button type="submit" class=" sumbitBtn btn-primary border-primary " value="@emp.Id" required name="done">done</button>
+                                <button type="submit" class=" sumbitBtn btn-primary border-primary" value="@emp.Id" required name="delete">delete</button>
+                            </form>
+                        </td>
                     </tr>
                     }
                 </tbody>
             </table>
         </div>   
-        <div class="col addTask text-center">
+        <div class="col addTask text-center mt-5">
             <d сlass="text-center fw-bold mb-3">
                 <p сlass="fw-bold">Add new task</p>
             </d>

@@ -1,11 +1,1 @@
-[
-  {
-    "Id": 1,
-    "Name": "EXAM",
-    "Executor": "Moldobekov",
-    "Description": "just\u002Bdo\u002Bit",
-    "DateCreation": "2023-04-08T12:52:45.8383373+06:00",
-    "DateCompletion": null,
-    "State": "new"
-  }
-]
+[{"Id":1,"Name":"EXAM","Executor":"Moldobekov","Description":"just\u002Bdo\u002Bit","DateCreation":"2023-04-08","DateCompletion":null,"State":"done"},{"Id":3,"Name":"Jonh","Executor":"Moldobekov","Description":"DOOOOO","DateCreation":"08.04.2023","DateCompletion":null,"State":"done"}]
