@@ -8,7 +8,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace Lesson45
+namespace exam_6
 {
     internal class Server
     {
@@ -130,7 +130,7 @@ namespace Lesson45
                 razorService.AddTemplate(filename,File.ReadAllText(filePath));
                 razorService.Compile(filename);
             }
-            List<Employee> employees = JsonSerializer.Deserialize<List<Employee>>(File.ReadAllText("../../../employees.json"));
+            List<Task> employees = JsonSerializer.Deserialize<List<Task>>(File.ReadAllText("../../../employees.json"));
             if (query.HasKeys())
             {
                 int idFrom = Convert.ToInt32(query.Get("idFrom"));

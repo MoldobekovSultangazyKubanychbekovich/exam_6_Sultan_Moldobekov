@@ -1,7 +1,7 @@
 ﻿using System.Net;
 using System.Text;
 
-namespace Lesson45
+namespace exam_6
 {
     internal class Program
     {
