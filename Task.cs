@@ -24,7 +24,7 @@ namespace exam_6
             Description = description;
             State = "new";
             DateCreation = DateTime.Now.ToString("d");
-            DateCompletion = null;
+            DateCompletion = "don`t completed";
         }
     }
 }
