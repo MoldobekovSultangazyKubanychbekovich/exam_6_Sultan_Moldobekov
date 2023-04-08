@@ -11,7 +11,7 @@
             <p>Date completion: @Model.Task.DateCompletion</p>
         </div>
         <div class="col box-2 text-center">
-            <form ñlass=" formCat text-center me-0" method="post">
+            <form ñlass=" formCat text-center me-0" method="get" action="http://localhost:8888/index.html">
                 <div class="mb-3">
                     <button type="submit" class=" btn-x btn-primary border-primary " value="@Model.Task.Id" required name="done">done</button>
                     <button type="submit" class=" btn-x btn-primary border-primary" value="@Model.Task.Id" required name="delete">delete</button>

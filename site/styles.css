@@ -33,3 +33,11 @@
 .box {
     border: 2px solid blue;
 }
+.inpDes {
+    width: 200px;
+    height: 150px;
+    padding: 150px;
+    border: 1px solid #999;
+    font-size: 16px;
+    font-family: Tahoma;
+}

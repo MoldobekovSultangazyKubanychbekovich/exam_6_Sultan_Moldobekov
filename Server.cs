@@ -131,7 +131,6 @@ namespace exam_6
             }
             List<Task> task = Serializer.GetTasks();
             Task t = null;
-            int idShow = 0;
             if (query.HasKeys())
             {
                 if (query.Get("delete") != null)
@@ -146,10 +145,10 @@ namespace exam_6
                 }
                 else
                 {
-                    idShow = Convert.ToInt32(query.Get("id"));
+                    int id = Convert.ToInt32(query.Get("id"));
                     foreach (var item in task)
                     {
-                        if (idShow == item.Id)
+                        if (id == item.Id)
                         {
                             t = item;
                         }
@@ -226,17 +225,6 @@ namespace exam_6
                     tasks[i].State = "done";
                     tasks[i].DateCompletion = DateTime.Now.ToString("d");
                     Serializer.OverrideFile(tasks);
-                }
-            }
-        }
-        public void ShowTask(int id, Task t)
-        {
-            List<Task> tasks = Serializer.GetTasks();
-            for (int i = 0; i < tasks.Count; i++)
-            {
-                if (id == tasks[i].Id)
-                {
-                    tasks[i] = t;
                 }
             }
         }
