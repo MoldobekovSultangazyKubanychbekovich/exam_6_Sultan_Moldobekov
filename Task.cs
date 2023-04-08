@@ -14,7 +14,7 @@ namespace exam_6
         public string? Executor { get; set; }
         public string? Description { get; set; }
         public string DateCreation { get; set; }
-        public DateTime? DateCompletion { get; set; }
+        public string DateCompletion { get; set; }
         public string State { get; set; }
         public Task(int id, string name, string executor, string description)
         {
