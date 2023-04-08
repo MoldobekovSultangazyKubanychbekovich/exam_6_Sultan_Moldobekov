@@ -6,13 +6,13 @@
     <div><h3 class="text-center fw-bold">Tasks #@Model.Task.Id</h3></div>
     <div class="box row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-2">
         <div class="col box-1">
-            <p>Execotor name:   @Model.Task.Name</p>
-            <p>Date creation:   @Model.Task.DateCreation</p>
-            <p>Date completion: @Model.Task.DateCompletion</p>
+            <p>Execotor name:   <span>@Model.Task.Name</span></p>
+            <p>Date creation:   <span>@Model.Task.DateCreation</span></p>
+            <p>Date completion: <span>@Model.Task.DateCompletion</span></p>
         </div>
         <div class="col box-2 text-center">
             <form ñlass=" formCat text-center me-0" method="get" action="http://localhost:8888/index.html">
-                <div class="mb-3">
+                <div class="mb-3">    
                     <button type="submit" class=" btn-x btn-primary border-primary " value="@Model.Task.Id" required name="done">done</button>
                     <button type="submit" class=" btn-x btn-primary border-primary" value="@Model.Task.Id" required name="delete">delete</button>
                 </div>

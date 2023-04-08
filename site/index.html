@@ -20,13 +20,15 @@
                     @foreach(var emp in Model.Tasks){
                     <tr>
                         <th scope="row">@emp.Id</th>
-                        <td><a href="http://localhost:8888/task.html?id=@emp.Id">@emp.Name</a></td>
+                        <td><a class="head"  href="http://localhost:8888/task.html?id=@emp.Id">@emp.Name</a></td>
                         <td>@emp.Executor</td>
                         <td>@emp.DateCreation</td>
                         <td>@emp.State</td>
                         <td>
                             <form method="get">
+                                @if(emp.State != "done"){
                                 <button type="submit" class=" sumbitBtn btn-primary border-primary " value="@emp.Id" required name="done">done</button>
+                                }
                                 <button type="submit" class=" sumbitBtn btn-primary border-primary" value="@emp.Id" required name="delete">delete</button>
                             </form>
                         </td>

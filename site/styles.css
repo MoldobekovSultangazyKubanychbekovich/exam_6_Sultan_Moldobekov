@@ -41,3 +41,12 @@
     font-size: 16px;
     font-family: Tahoma;
 }
+.head{
+    text-decoration: none;
+    color: black;
+}
+.topnav {
+    position: relative;
+    background-color: #333;
+    overflow: hidden;
+}
