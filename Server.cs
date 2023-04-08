@@ -129,13 +129,12 @@ namespace exam_6
                 razorService.AddTemplate(filename,File.ReadAllText(filePath));
                 razorService.Compile(filename);
             }
-            List<Task> employees = JsonSerializer.Deserialize<List<Task>>(File.ReadAllText("../../../employees.json"));
-            if (query.HasKeys())
-            {
-                int idFrom = Convert.ToInt32(query.Get("idFrom"));
-                int idTo = Convert.ToInt32(query.Get("idTo"));
-                employees.RemoveAll(e => e.Id < idFrom || e.Id > idTo);
-            }
+            //if (query.HasKeys())
+            //{
+            //    int idFrom = Convert.ToInt32(query.Get("idFrom"));
+            //    int idTo = Convert.ToInt32(query.Get("idTo"));
+            //    employees.RemoveAll(e => e.Id < idFrom || e.Id > idTo);
+            //}
             var method = context.Request.HttpMethod;
             if (method == "POST" && filePath == "../../../site/showText.html")
             {
@@ -154,13 +153,26 @@ namespace exam_6
                 bytes = context.Request.InputStream.Read(buffer, 0, buffer.Length);
                 builder.Append(System.Text.Encoding.ASCII.GetString(buffer, 0, bytes));
                 string result = builder.ToString();
-                string res = Uri.UnescapeDataString(result.Split("=")[1]);
+                Console.WriteLine(result);
+                string[] res = result.Split("&");
+                AddTask(res);
             }
+            List<Task> task = Serializer.GetTasks();
             html = razorService.Run(filename, null, new
             {
-                Employees = employees
+                Tasks = task
             });
             return html;
+        }
+        public void AddTask(string[] res)
+        {
+            string name = res[0].Split("=")[1];
+            string executor = res[1].Split("=")[1];
+            string description = res[2].Split("=")[1];
+            Task task = new Task(name, executor, description);
+            List<Task> tasks = Serializer.GetTasks();
+            tasks.Add(task);
+            Serializer.OverrideFile(tasks);
         }
     }
 }
